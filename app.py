@@ -134,7 +134,7 @@ def main():
         if st.session_state['host'] !=[] and st.session_state['user'] !=[] and st.session_state['database'] !=[]:  
             
             db_connection,schema = database_connection(st.session_state['host'], st.session_state['user'] , st.session_state['password'], st.session_state['database'])
-            st.write('db connection: ',db_connection)
+            # st.write('db connection: ',db_connection)
             st.session_state['schema']=schema   
             # st.write('schema:',schema)
 
