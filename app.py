@@ -84,7 +84,7 @@ def main():
         uploaded_file = st.sidebar.file_uploader("Choose a file")
         if uploaded_file is not None:
             # st.sidebar.success('File uploaded Successully')
-            db_name = st.sidebar.text_input("Database name: ")
+            db_name = st.sidebar.text_input("Project name: ")
             submit_button = st.sidebar.button("Submit", type="primary")
             if submit_button:
                 st.sidebar.success("DB name submitted successfully")
@@ -132,8 +132,9 @@ def main():
         if st.session_state['host'] !=[] and st.session_state['user'] !=[] and st.session_state['database'] !=[]:  
             
             db_connection,schema = database_connection(st.session_state['host'], st.session_state['user'] , st.session_state['password'], st.session_state['database'])
+            st.write('db connection: ',db_connection)
             st.session_state['schema']=schema   
-            st.write('schema:',schema)
+            # st.write('schema:',schema)
 
             st.session_state['db_connection']=db_connection
             #st.write(st.session_state['db_connection'])
@@ -152,13 +153,13 @@ def main():
             if submit_button:
                 
                 if user_query:
-                    st.write('user query:',user_query)
-                    st.write('schema:',st.session_state['schema'])
+                    # st.write('user query:',user_query)
+                    # st.write('schema:',st.session_state['schema'])
 
 # why is schema empltyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
                     sql_query = get_answer(user_query, st.session_state['schema'])
-                    st.write('sql query:',sql_query)
-                    with st.expander("Generated SQL Query", expanded=True):
+                    # st.write('sql query:',sql_query)
+                    with st.expander("Generated SQL Query", expanded=False):
                         st.success(sql_query)
                     if sql_query != "Please enter the relevant query!":
 
