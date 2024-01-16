@@ -86,6 +86,8 @@ def main():
             # st.sidebar.success('File uploaded Successully')
             db_name = st.sidebar.text_input("Project name: ")
             submit_button = st.sidebar.button("Submit", type="primary")
+                        # submit_button = st.sidebar.button("Submit", type="primary")
+
             if submit_button:
                 st.sidebar.success("DB name submitted successfully")
                 xls_connection = xlsxx.excel_to_mysql(uploaded_file,db_name)
