@@ -57,9 +57,12 @@ def excel_to_mysql(excel_file, database):
     # password = 'BJe11cybiR7WpXgfmQJs'
     # host = '70.98.204.225'
     
+    # user = 'root'
+    # password = 'atm8019atM@'
+    # host = 'localhost'
     user = 'root'
-    password = 'atm8019atM@'
-    host = 'localhost'
+    password = 'BJe11cybiR7WpXgfmQJs'
+    host = '70.98.204.225'
     schema = {}
     # Read Excel file into a dictionary of DataFrames
     xls_data = pd.read_excel(excel_file, sheet_name=None)
