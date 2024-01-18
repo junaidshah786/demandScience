@@ -43,7 +43,9 @@ def connect_to_sql():
             st.session_state['host'] = st.text_input("MySQL Host:", value="70.98.204.225")
             st.session_state['user'] = st.text_input("MySQL Username:", value="root")
             st.session_state['password'] = st.text_input("MySQL Password:", type="password", value="BJe11cybiR7WpXgfmQJs")
-            st.session_state['database'] = st.text_input("MySQL Database Name:", value="qwertyuiop")
+            st.session_state['database'] = st.text_input("MySQL Database Name:")
+            # st.session_state['database'] = st.text_input("MySQL Database Name:", value="qwertyuiop")
+
 
         check_connection = st.sidebar.button("Connect", key='check_connection')
         st.session_state['connect_db'] = check_connection

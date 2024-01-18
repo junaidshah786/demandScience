@@ -1,150 +1,157 @@
-# connection.cursor?
-# what happens when we connect the excel file, no response?
-    # if DB_option=='Connect to SQL' and st.session_state['schema']==[]: (validate this line)
-
-from  controller.generate_insights  import get_insights
+from controller.generate_insights import get_insights
 from controller.main import database_connection, fetch_data, get_answer
 import controller.excel_to_db as xlsxx
 from controller.visualization import visualization, get_answer_for_visualization
 import streamlit as st
+# from dotenv import load_dotenv
 import openai
-# import os
-from dotenv import load_dotenv
-load_dotenv()   
-
-# Set OpenAI API key
-# openai.api_key = os.getenv('openai_api_key')
+import time
+# load_dotenv()
 
 openai.api_key = st.secrets["openai_api_key"]
 
+def initialize_session_state():
+    session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database']
 
-if 'db_connection' not in st.session_state:
-    st.session_state['db_connection']=[]
+    for var in session_state_vars:
+        if var not in st.session_state:
+            st.session_state[var] = []
 
-if 'connect_db' not in st.session_state:
-    st.session_state['connect_db']=[]
-
-if 'schema' not in st.session_state:
-    st.session_state['schema']=[]
-
-if 'xls_connection' not in st.session_state:
-        st.session_state['xls_connection']=[]
-        
-if 'host' not in st.session_state:
-        st.session_state['host']=[]
-        
-if 'user' not in st.session_state:
-        st.session_state['user']=[]
-
-if 'database' not in st.session_state:
-        st.session_state['database']=[]
-        
-
-# Main function
-def main():
-    st.title("Data Craft")
-    # Custom CSS styles for button and text box
-    st.markdown(
-        """
-        <style>
-            .stButton>button {
-            background-color: #000000;
-            color: #FFFFFF;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    DB_option = st.sidebar.selectbox(
-    "How would you like to be connected?",
-    ("Upload Excel File", "Connect to SQL","Connect to MongoDB"),
-    index=None,
-    placeholder="Select DB...")
-    
-    if DB_option=='Upload Excel File' and st.session_state['schema']==[] :
-    
+def upload_excel_file():
+    if st.session_state['schema'] == []:
         uploaded_file = st.sidebar.file_uploader("Choose a file")
         if uploaded_file is not None:
             db_name = st.sidebar.text_input("Project name: ")
             submit_button = st.sidebar.button("Submit", type="primary")
 
-            if submit_button:
-                st.sidebar.success("DB name submitted successfully")
-                xls_connection = xlsxx.excel_to_mysql(uploaded_file,db_name)
+            if submit_button:   
+                success_message = st.sidebar.success("DB name submitted successfully")
+                time.sleep(2)
+                success_message.empty()
+                xls_connection, schema = xlsxx.excel_to_mysql(uploaded_file, db_name)
+                st.session_state['schema'] = schema
                 st.warning(xls_connection)
-                st.session_state['xls_connection']=xls_connection
-                if  st.session_state['xls_connection'] == "Database name already in use !":
-                    st.error(f"Database name already in use !")
+                st.session_state['xls_connection'] = xls_connection
+                if st.session_state['xls_connection'] == "Database name already in use !":
+                    st.error("Database name already in use !")
                     return
-                
 
-        
-    if DB_option=='Connect to SQL' and st.session_state['schema']==[]:
-        with st.sidebar:    
+def connect_to_sql():
+    if st.session_state['schema'] == []:
+        with st.sidebar:
             st.subheader("Connection Settings")
             st.session_state['host'] = st.text_input("MySQL Host:", value="70.98.204.225")
             st.session_state['user'] = st.text_input("MySQL Username:", value="root")
-            st.session_state['password']= st.text_input("MySQL Password:", type="password", value="BJe11cybiR7WpXgfmQJs")
-            st.session_state['database']= st.text_input("MySQL Database Name:", value="sales")
+            st.session_state['password'] = st.text_input("MySQL Password:", type="password", value="BJe11cybiR7WpXgfmQJs")
+            st.session_state['database'] = st.text_input("MySQL Database Name:")
+            # st.session_state['database'] = st.text_input("MySQL Database Name:", value="qwertyuiop")
 
 
-        # Connect to the database when the "Connect" button is clicked
-        check_connection=st.sidebar.button("Connect", key='check_connection')
-        st.session_state['connect_db']=check_connection
-        
-    
-    if DB_option=='Connect to MongoDB' and st.session_state['schema']==[]:
-        st.success('Connected to MongoDB')
-    
-    
-    
-# this snippit will execute when we connect to remote DB
-    if st.session_state['host'] !=[] and st.session_state['user'] !=[] and st.session_state['database'] !=[]:  
-        
-        db_connection,schema = database_connection(st.session_state['host'], st.session_state['user'] , st.session_state['password'], st.session_state['database'])
-        st.session_state['schema']=schema   
+        check_connection = st.sidebar.button("Connect", key='check_connection')
+        st.session_state['connect_db'] = check_connection
 
-        st.session_state['db_connection']=db_connection
-    if  st.session_state['xls_connection'] != []:
-        st.session_state['db_connection'] = st.session_state['xls_connection']
-    if st.session_state['db_connection'] is not None:
+def main():
+    try:
+        st.title("Data Craft")
+        st.markdown(
+            """
+            <style>
+                .stButton>button {
+                background-color: #000000;
+                color: #FFFFFF;
+                }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        initialize_session_state()
+
+        DB_option = st.sidebar.selectbox(
+            "How would you like to be connected?",
+            ("Upload Excel File", "Connect to SQL", "Connect to MongoDB"),
+            index=None,
+            placeholder="Select DB..."
+        )
         
-        st.markdown("---")
-        with st.form(key='my_form', clear_on_submit=True):  
-            user_query = st.text_area("Enter your query:", height=150, max_chars=1000)
-            submit_button = st.form_submit_button(label='Draft Insights')
-        if submit_button:
+        # show_sql_query=st.sidebar.toggle('Show SQL query')
+
+        if DB_option == 'Upload Excel File':
+            upload_excel_file()
+
+        elif DB_option == 'Connect to SQL':
+            connect_to_sql()
+
+        elif DB_option == 'Connect to MongoDB':
+            st.success('Connected to MongoDB')
+
+        if st.session_state['host'] and st.session_state['user'] and st.session_state['database']:
+            db_connection, schema = database_connection(
+                st.session_state['host'],
+                st.session_state['user'],
+                st.session_state['password'],
+                st.session_state['database']
+            )
+            # print('schema: ',schema)
+            st.session_state['schema'] = schema
+            st.session_state['db_connection'] = db_connection
+
+        if st.session_state['xls_connection']:
+            st.session_state['db_connection'] = st.session_state['xls_connection']
             
-            if user_query:
 
-# why is schema empltyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+        if st.session_state['db_connection']:
+            # st.write('schema: ',st.session_state['schema'])
+            st.markdown("---")
+            with st.form(key='my_form', clear_on_submit=True):  
+                # user_query = st.text_area("Enter your query:", height=150, max_chars=1000)
+                # Check if the user_query key exists in session_state, if not set to an empty string
+                user_query = st.session_state.get('user_query', '')
+                user_query = st.text_area("Enter your query:", value=user_query, height=150, max_chars=1000)
+
+                submit_button = st.form_submit_button(label='Draft Insights')
+                
+                
+                chart_type = st.selectbox("Select Chart Type", ["bar", "line", "scatter"])  # Add more chart types as needed
+
+            if submit_button and user_query:
                 sql_query = get_answer(user_query, st.session_state['schema'])
-                # st.write('sql query:',sql_query)
-                with st.expander("Generated SQL Query", expanded=False):
+                # with st.expander("Generated SQL Query", expanded=False):
+                #     st.success(sql_query)
+                
+                
+                # if show_sql_query:
+                with st.sidebar.expander("Generated SQL Query", expanded=False):
                     st.success(sql_query)
-                if sql_query != "Please enter the relevant query!":
-
-                    # Perform database operations here
-                    # st.write("CONNECTION before fetch data:  ",st.session_state['db_connection'])
-                    data = fetch_data(st.session_state['db_connection'], sql_query)
-                    print(f"==========DATA=============  {data}")
-                    query_nature = get_answer_for_visualization(sql_query)
-                    if any(element is None for element in data[0]):
-            
-                            st.error(f"Error: Invalid query! Please provide correct information.")
-                    else:
                         
-                        print(f"USER QUERY : {sql_query} \nsql_query : {query_nature}")
+                        
+                        
+                        
+
+                if sql_query != "Please enter the relevant query!":
+                    # st.write('db connection 112: ', st.session_state['db_connection'])
+                    # it fetches the answer using the sql command geenrated
+                    data = fetch_data(st.session_state['db_connection'], sql_query)
+                    print('data:', data)
+                    # gives an answer in user friendly format using LLM
+                    query_nature = get_answer_for_visualization(sql_query)
+                    
+                    # st.write(query_nature)
+                    if any(element is None for element in data[0]):
+                        st.error("Error: Invalid query! Please provide correct information.")
+                    else:
                         if "Insight" in query_nature:
-                            # for element in data:
-                            #     st.success(element)
-                            processed_data = get_insights(user_query,data)
+                            # st.write('')
+                            processed_data = get_insights(user_query, data)
                             st.success(processed_data)
                         else:
-                            visualization(data,query_nature)
-                    
-      
+                            # print('data used for visualzation: ', data)
+                            
+                            visualization(data, query_nature,chart_type)
+
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
+        print(f'ERROR OCCURED: {str(e)}')   
+
 if __name__ == "__main__":
     main()
-    
