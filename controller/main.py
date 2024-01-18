@@ -19,7 +19,7 @@ def make_prompt(customer_query,schema):
     prompt = f"""You are a professional DataBase Adminstrator \
         You have to write the syntatically sementically correct sql query \
         the sql query should be transformed from the customer_query \
-        the attributes and table names to be used for formulating the sql query should be identical to the provided schema\
+        Scrictly make sure the attributes and table names to be used for formulating the sql query should be same as the provided schema\
         schema is a dictionary with table names as keys and table columns as their respective values \
         schema can have a single table only or multiple relational tables\
         while formulating the sql query consider the principles of relational database concepts\
@@ -41,7 +41,7 @@ def get_completion(messages, model="gpt-3.5-turbo"):
     return response.choices[0].message["content"]
 
 def get_answer(user_query,schema):
-
+    # print('schema:',schema)
     prompt = make_prompt(user_query,schema)
     messages = [
         {"role": "system", "content": prompt}
@@ -100,10 +100,13 @@ def fetch_data(connection,response):
     try:
         cursor = connection.cursor()
         query = response
+        print('query: ',query)
         cursor.execute(query)
         rows = cursor.fetchall()
+        # st.write('rows:',rows)    
         #st.subheader("Fetched data:")
         if rows:
+            # st.write('rows is not empty data: ',rows)
             return rows
         else:
             st.error(f"Error: Invalid query! Please provide correct information.")

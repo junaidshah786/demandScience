@@ -1,7 +1,7 @@
 import pandas as pd
 import mysql.connector
 from mysql.connector import Error
-
+import streamlit as st
 # Function to create a MySQL connection
     
 def create_connection(database, user, password, host='localhost'):    
@@ -12,6 +12,7 @@ def create_connection(database, user, password, host='localhost'):
             password=password,
             database=database
         )
+        
         if connection.is_connected():
             print(f"The name {database} is already in use !")
             return "Database name already in use !"
@@ -81,19 +82,30 @@ def excel_to_mysql(excel_file, database):
 
             # Iterate through sheets and create tables
             for sheet_name, sheet_data in xls_data.items():
+                
                 # Use sheet name as table name (you may need to sanitize the sheet names)
                 table_name = sheet_name.lower().replace(" ", "_")
                 print(f"Creating table '{table_name}'")
+                # print("sheet_data: ",sheet_data)
 
                 # Create table with MySQL-specific syntax
-                create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} VARCHAR(255)' for col in sheet_data.columns])})"
+                
+                
+                cleaned_column_names = [col.replace(" ", "_") for col in sheet_data.columns]
+
+                # Create the CREATE TABLE query
+                create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} VARCHAR(255)' for col in cleaned_column_names])})"
+                
+                # create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} VARCHAR(255)' for col in sheet_data.columns])})"
                 print("create_table_query: ",create_table_query)
                 cursor.execute(create_table_query)
                 print(f"Table '{table_name}' created")
+                
 
                 # Insert data into table
                 for _, row in sheet_data.iterrows():
-                    insert_query = f"INSERT INTO {table_name} VALUES ({', '.join(['%s']*len(row))})"
+                    # print('row name: ',table_name,'row:',row)
+                    insert_query = f"INSERT INTO {table_name} VALUES ({', '.join(['%s']*len(row))})"    
                     cursor.execute(insert_query, tuple(row))
 
                 print(f"Data inserted into '{table_name}' table")
@@ -113,17 +125,19 @@ def excel_to_mysql(excel_file, database):
 
             # Display the fetched data using st.write
             # with st.sidebar:
-            #     st.subheader("Schema:")
+            # st.subheader("Schema:", schema)
+            
             for row in rows:
                 table_name, column_name = row
                 if table_name not in schema:
+                    
                     schema[table_name] = []
                 schema[table_name].append(column_name)
-
+            # st.write("Schema:", schema)
             # connection.commit()
             print("Data successfully imported into the MySQL database.")
             #excel_accepted = True
-            return connection
+            return connection,schema
         except Error as e:
             print(f"Error: {e}")
 

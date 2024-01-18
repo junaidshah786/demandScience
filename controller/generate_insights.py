@@ -12,10 +12,10 @@ load_dotenv()
 # Set OpenAI API key
 openai.api_key = os.getenv('openai_api_key')
 
-def make_prompt(sql_query,data):
+def make_prompt(user_query,data):
     prompt = f"""
                 You are an expert Data Analyst.\
-                Your role is to interpret and analyze the data in alignment with the requirements specified in the SQL query.\
+                Your role is to interpret and analyze the data in alignment with the requirements specified in the user query.\
                 The response should not hold any specification of query and structure of data just the conclusion from the data\
                 Provide a precise response.\
              
@@ -23,7 +23,7 @@ def make_prompt(sql_query,data):
 
 
 
-        ```{sql_query}``` 
+        ```{user_query}``` 
         ```{data}```       
         
     """
