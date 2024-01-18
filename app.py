@@ -30,7 +30,7 @@ def upload_excel_file():
                 success_message.empty()
                 xls_connection, schema = xlsxx.excel_to_mysql(uploaded_file, db_name)
                 st.session_state['schema'] = schema
-                st.warning(xls_connection)
+                # st.warning(xls_connection)
                 st.session_state['xls_connection'] = xls_connection
                 if st.session_state['xls_connection'] == "Database name already in use !":
                     st.error("Database name already in use !")
@@ -72,8 +72,17 @@ def main():
             ("Upload Excel File", "Connect to SQL", "Connect to MongoDB"),
             index=None,
             placeholder="Select DB..."
-        )
+        )   
         
+        if DB_option is None:
+            # st.sidebar.success(DB_option)
+            session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database']
+
+            for var in session_state_vars:
+                # if var not in st.session_state:
+                st.session_state[var] = []
+            
+
         # show_sql_query=st.sidebar.toggle('Show SQL query')
 
         if DB_option == 'Upload Excel File':
@@ -107,7 +116,7 @@ def main():
                 # user_query = st.text_area("Enter your query:", height=150, max_chars=1000)
                 # Check if the user_query key exists in session_state, if not set to an empty string
                 user_query = st.session_state.get('user_query', '')
-                user_query = st.text_area("Enter your query:", value=user_query, height=150, max_chars=1000)
+                user_query = st.text_area("Enter your query:", value=user_query, height=70, max_chars=1000)
 
                 submit_button = st.form_submit_button(label='Draft Insights')
                 
