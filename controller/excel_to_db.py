@@ -92,15 +92,16 @@ def excel_to_mysql(excel_file, database):
                 
                 
                 cleaned_column_names = [col.replace(" ", "_") for col in sheet_data.columns]
-
+                print("\n\ncleaned_column_names:", cleaned_column_names)
                 # Create the CREATE TABLE query
-                create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} VARCHAR(255)' for col in cleaned_column_names])})"
+                create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} TEXT' for col in cleaned_column_names])})"
                 
                 # create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} VARCHAR(255)' for col in sheet_data.columns])})"
                 print("create_table_query: ",create_table_query)
                 cursor.execute(create_table_query)
                 print(f"Table '{table_name}' created")
                 
+                sheet_data.fillna('temp', inplace=True)
 
                 # Insert data into table
                 for _, row in sheet_data.iterrows():
