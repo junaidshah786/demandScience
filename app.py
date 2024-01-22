@@ -1,5 +1,5 @@
 from controller.generate_insights import get_insights
-from controller.main import database_connection, fetch_data, get_answer
+from controller.connect_DB_mongo import database_connection, fetch_data, get_answer
 import controller.excel_to_db as xlsxx
 from controller.visualization import visualization, get_answer_for_visualization
 import streamlit as st
@@ -11,11 +11,17 @@ import time
 openai.api_key = st.secrets["openai_api_key"]
 
 def initialize_session_state():
-    session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database']
+    session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database', "settings"]
 
     for var in session_state_vars:
         if var not in st.session_state:
             st.session_state[var] = []
+
+def download_excel():
+    file_path = 'files/DummyData.xlsx'
+    with open(file_path, 'rb') as f:
+        data = f.read()
+    return data     
 
 def upload_excel_file():
     if st.session_state['schema'] == []:
@@ -30,6 +36,7 @@ def upload_excel_file():
                 success_message.empty()
                 xls_connection, schema = xlsxx.excel_to_mysql(uploaded_file, db_name)
                 st.session_state['schema'] = schema
+                # st.write(type(schema))
                 # st.warning(xls_connection)
                 st.session_state['xls_connection'] = xls_connection
                 if st.session_state['xls_connection'] == "Database name already in use !":
@@ -72,11 +79,18 @@ def main():
             ("Upload Excel File", "Connect to SQL", "Connect to MongoDB"),
             index=None,
             placeholder="Select DB..."
-        )   
-        
+        )    
+
+        st.session_state['settings']= st.sidebar.checkbox("Settings")
+        if st.session_state['settings']:
+            if st.sidebar.button('Download Excel file'):
+                excel_data = download_excel()
+                st.sidebar.download_button(label='Click here to download', data=excel_data, file_name='sample_excel.xlsx', key='download_button', help='Click to download')
+
         if DB_option is None:
             # st.sidebar.success(DB_option)
             session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database']
+            
 
             for var in session_state_vars:
                 # if var not in st.session_state:
@@ -128,10 +142,11 @@ def main():
                 # with st.expander("Generated SQL Query", expanded=False):
                 #     st.success(sql_query)
                 
+                # if st.session_state['settings']:
                 
-                # if show_sql_query:
+                    # if show_sql_query:
                 with st.sidebar.expander("Generated SQL Query", expanded=False):
-                    st.success(sql_query)
+                    st.success(sql_query)   
                         
                         
                         

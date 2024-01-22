@@ -1,5 +1,5 @@
 from controller.generate_insights import get_insights
-from controller.main import database_connection, fetch_data, get_answer
+from controller.connect_DB_mongo import database_connection, fetch_data, get_answer
 import controller.excel_to_db as xlsxx
 from controller.visualization import visualization, get_answer_for_visualization
 import streamlit as st
