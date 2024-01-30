@@ -1,3 +1,6 @@
 secrets.toml
 test.ipynb
 backup.py
+backup_excel_to_db.py
+10_minutes_to_PandasAI.ipynb
+pandasai.ipynb

@@ -1,0 +1,2780 @@
+2024-01-23 11:45:53 [INFO] Question: Return the top 5 countries by GDP
+2024-01-23 11:45:53 [INFO] Running PandasAI with openai LLM...
+2024-01-23 11:45:53 [INFO] Prompt ID: d49bedce-0809-4dc7-bf2e-8303880101bd
+2024-01-23 11:45:53 [INFO] Executing Step 0: CacheLookup
+2024-01-23 11:45:53 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 11:45:53 [INFO] Using prompt: <dataframe>
+dfs[0]:10x3
+country,gdp,happiness_index
+United Kingdom,8063478344,7.16
+France,6496883839,6.66
+United States,9863376955,6.94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Return the top 5 countries by GDP
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 11:45:53 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 11:45:57 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+top_5_countries = df.nlargest(5, 'gdp')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "dataframe", "value": top_5_countries}
+            ```
+            
+2024-01-23 11:45:57 [INFO] Executing Step 3: CachePopulation
+2024-01-23 11:45:57 [INFO] Executing Step 4: CodeExecution
+2024-01-23 11:45:57 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 11:45:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+top_5_countries = df.nlargest(5, 'gdp')
+result = {'type': 'dataframe', 'value': top_5_countries}
+        ```
+2024-01-23 11:45:57 [INFO] Executing Step 5: ResultValidation
+2024-01-23 11:45:57 [INFO] Answer: {'type': 'dataframe', 'value':           country             gdp  happiness_index
+0   United States  19294482071552             6.94
+9           China  14631844184064             5.12
+8           Japan   4380756541440             5.87
+3         Germany   3435817336832             7.07
+1  United Kingdom   2891615567872             7.16}
+2024-01-23 11:45:57 [INFO] Executed in: 4.485047817230225s
+2024-01-23 11:45:57 [INFO] Executing Step 6: ResultParsing
+2024-01-23 11:46:07 [INFO] Question: What's the sum of the gdp of the 2 unhappiest countries?
+2024-01-23 11:46:07 [INFO] Running PandasAI with openai LLM...
+2024-01-23 11:46:07 [INFO] Prompt ID: dbe07b00-e046-4e84-9bf3-04f9372488f7
+2024-01-23 11:46:07 [INFO] Executing Step 0: CacheLookup
+2024-01-23 11:46:07 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 11:46:07 [INFO] Using prompt: <dataframe>
+dfs[0]:10x3
+country,gdp,happiness_index
+United Kingdom,8063478344,7.16
+France,6496883839,6.66
+United States,9863376955,6.94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: What's the sum of the gdp of the 2 unhappiest countries?
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 11:46:07 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 11:46:10 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+unhappiest_countries = dfs[0].nsmallest(2, 'happiness_index')
+sum_gdp = unhappiest_countries['gdp'].sum()
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": sum_gdp
+}
+            ```
+            
+2024-01-23 11:46:10 [INFO] Executing Step 3: CachePopulation
+2024-01-23 11:46:10 [INFO] Executing Step 4: CodeExecution
+2024-01-23 11:46:10 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 11:46:10 [INFO] 
+Code running:
+```
+unhappiest_countries = dfs[0].nsmallest(2, 'happiness_index')
+sum_gdp = unhappiest_countries['gdp'].sum()
+result = {'type': 'number', 'value': sum_gdp}
+        ```
+2024-01-23 11:46:10 [INFO] Executing Step 5: ResultValidation
+2024-01-23 11:46:10 [INFO] Answer: {'type': 'number', 'value': 19012600725504}
+2024-01-23 11:46:10 [INFO] Executed in: 2.679135322570801s
+2024-01-23 11:46:10 [INFO] Executing Step 6: ResultParsing
+2024-01-23 11:46:52 [INFO] Question: Plot a chart of the gdp by country
+2024-01-23 11:46:52 [INFO] Running PandasAI with openai LLM...
+2024-01-23 11:46:52 [INFO] Prompt ID: 175cdf96-5883-4f4d-a8d9-7c36816c35d7
+2024-01-23 11:46:52 [INFO] Executing Step 0: CacheLookup
+2024-01-23 11:46:52 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 11:46:52 [INFO] Using prompt: <dataframe>
+dfs[0]:10x3
+country,gdp,happiness_index
+United Kingdom,8063478344,7.16
+France,6496883839,6.66
+United States,9863376955,6.94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Plot a chart of the gdp by country
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 11:46:52 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 11:46:56 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df.plot(x='country', y='gdp', kind='bar')
+plt.xlabel('Country')
+plt.ylabel('GDP')
+plt.title('GDP by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "gdp_chart.png"}
+            ```
+            
+2024-01-23 11:46:56 [INFO] Executing Step 3: CachePopulation
+2024-01-23 11:46:56 [INFO] Executing Step 4: CodeExecution
+2024-01-23 11:46:56 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 11:46:56 [INFO] 
+Code running:
+```
+df = dfs[0]
+df.plot(x='country', y='gdp', kind='bar')
+plt.xlabel('Country')
+plt.ylabel('GDP')
+plt.title('GDP by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 11:46:58 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 11:46:58 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'
+. Retrying
+2024-01-23 11:46:58 [INFO] Using prompt: <dataframe>
+dfs[0]:10x3
+country,gdp,happiness_index
+United Kingdom,8063478344,7.16
+France,6496883839,6.66
+United States,9863376955,6.94
+</dataframe>
+
+The user asked the following question:
+Q: Plot a chart of the gdp by country
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df.plot(x='country', y='gdp', kind='bar')
+plt.xlabel('Country')
+plt.ylabel('GDP')
+plt.title('GDP by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "gdp_chart.png"}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 11:47:02 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 11:47:02 [INFO] 
+Code running:
+```
+df = dfs[0]
+df.plot(x='country', y='gdp', kind='bar')
+plt.xlabel('Country')
+plt.ylabel('GDP')
+plt.title('GDP by Country')
+plt.savefig('d:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+result
+        ```
+2024-01-23 11:47:03 [INFO] Executing Step 5: ResultValidation
+2024-01-23 11:47:03 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 11:47:03 [INFO] Executed in: 10.731956720352173s
+2024-01-23 11:47:03 [INFO] Executing Step 6: ResultParsing
+2024-01-23 11:57:09 [INFO] Question: 
+Plot a pie chart with the following labels and values:
+labels = country
+values = gdp
+
+2024-01-23 11:57:09 [INFO] Running PandasAI with openai LLM...
+2024-01-23 11:57:09 [INFO] Prompt ID: fa9e5553-1606-4006-a91b-ac4e4b7998cf
+2024-01-23 11:57:09 [INFO] Executing Step 0: CacheLookup
+2024-01-23 11:57:09 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 11:57:09 [INFO] Using prompt: <dataframe>
+dfs[0]:10x3
+country,gdp,happiness_index
+United Kingdom,8063478344,7.16
+France,6496883839,6.66
+United States,9863376955,6.94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: 
+Plot a pie chart with the following labels and values:
+labels = country
+values = gdp
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 11:57:09 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 11:57:14 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+labels = df['country']
+values = df['gdp']
+
+plt.pie(values, labels=labels, autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+            ```
+            
+2024-01-23 11:57:14 [INFO] Executing Step 3: CachePopulation
+2024-01-23 11:57:14 [INFO] Executing Step 4: CodeExecution
+2024-01-23 11:57:14 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 11:57:14 [INFO] 
+Code running:
+```
+df = dfs[0]
+labels = df['country']
+values = df['gdp']
+plt.pie(values, labels=labels, autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 11:57:14 [INFO] Executing Step 5: ResultValidation
+2024-01-23 11:57:14 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 11:57:14 [INFO] Executed in: 5.121227025985718s
+2024-01-23 11:57:14 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:13:36 [INFO] Question: Return the top 5 countries by postal code
+2024-01-23 12:13:36 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:13:36 [INFO] Prompt ID: 9e0e684f-96e3-4292-ada0-df5698363955
+2024-01-23 12:13:36 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:13:36 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:13:36 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Return the top 5 countries by postal code
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:13:36 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:13:40 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+top_countries = df.groupby('Country')['PostalCode'].count().nlargest(5).reset_index()
+result = {"type": "dataframe", "value": top_countries}
+            ```
+            
+2024-01-23 12:13:40 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:13:40 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:13:40 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:13:40 [INFO] 
+Code running:
+```
+df = dfs[0]
+top_countries = df.groupby('Country')['PostalCode'].count().nlargest(5).reset_index()
+result = {'type': 'dataframe', 'value': top_countries}
+        ```
+2024-01-23 12:13:40 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:13:40 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 8402, in groupby
+    return DataFrameGroupBy(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\groupby.py", line 965, in __init__
+    grouper, exclusions, obj = get_grouper(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\grouper.py", line 888, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:13:40 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Return the top 5 countries by postal code
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+top_countries = df.groupby('Country')['PostalCode'].count().nlargest(5).reset_index()
+result = {"type": "dataframe", "value": top_countries}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 8402, in groupby
+    return DataFrameGroupBy(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\groupby.py", line 965, in __init__
+    grouper, exclusions, obj = get_grouper(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\grouper.py", line 888, in get_grouper
+    raise KeyError(gpr)
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:13:42 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:13:42 [INFO] 
+Code running:
+```
+df = dfs[0]
+top_countries = df.groupby('Countr')['PostalCode'].count().nlargest(5).reset_index()
+result = {'type': 'dataframe', 'value': top_countries}
+        ```
+2024-01-23 12:13:42 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2024-01-23 12:13:42 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\generic.py", line 1416, in __getitem__
+    return super().__getitem__(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\base.py", line 248, in __getitem__
+    raise KeyError(f"Column not found: {key}")
+KeyError: 'Column not found: PostalCode'
+. Retrying
+2024-01-23 12:13:42 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Return the top 5 countries by postal code
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+top_countries = df.groupby('Country')['PostalCode'].count().nlargest(5).reset_index()
+result = {"type": "dataframe", "value": top_countries}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\groupby\generic.py", line 1416, in __getitem__
+    return super().__getitem__(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\base.py", line 248, in __getitem__
+    raise KeyError(f"Column not found: {key}")
+KeyError: 'Column not found: PostalCode'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:13:44 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:13:44 [INFO] 
+Code running:
+```
+df = dfs[0]
+top_countries = df.groupby('Country')['PostalCode'].size().nlargest(5).reset_index()
+result = {'type': 'dataframe', 'value': top_countries}
+        ```
+2024-01-23 12:13:44 [ERROR] Pipeline failed on step 4: 'Country'
+2024-01-23 12:14:17 [INFO] Question: Return 5 countries
+2024-01-23 12:14:17 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:14:17 [INFO] Prompt ID: 10a48023-c594-4c8a-8c46-b4ffa1cd6767
+2024-01-23 12:14:17 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:14:17 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:14:18 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Return 5 countries
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:14:18 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:14:21 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+countries = dfs[0]['Country'].unique()[:5]
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "dataframe", "value": pd.DataFrame(countries, columns=["Country"]) }
+            ```
+            
+2024-01-23 12:14:21 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:14:21 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:14:21 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:14:21 [INFO] 
+Code running:
+```
+countries = dfs[0]['Country'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+        ```
+2024-01-23 12:14:21 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:14:21 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:14:21 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Return 5 countries
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+countries = dfs[0]['Country'].unique()[:5]
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "dataframe", "value": pd.DataFrame(countries, columns=["Country"]) }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:14:24 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:14:24 [INFO] 
+Code running:
+```
+countries = dfs[0]['Countr'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+result
+        ```
+2024-01-23 12:14:24 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:14:24 [INFO] Answer: {'type': 'dataframe', 'value':        Country
+0      Germany
+1       Mexico
+2           UK
+3       Sweden
+4       France}
+2024-01-23 12:14:24 [INFO] Executed in: 7.066996097564697s
+2024-01-23 12:14:24 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:15:02 [INFO] Question: Plot a chart of the count by country
+2024-01-23 12:15:02 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:15:02 [INFO] Prompt ID: 4ffca077-406f-45f6-b0e4-8e3a56b01cd2
+2024-01-23 12:15:02 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:15:03 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:15:03 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Plot a chart of the count by country
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:15:03 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:15:06 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='bar')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": plt}
+            ```
+            
+2024-01-23 12:15:06 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:15:06 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:15:06 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:15:06 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='bar')
+result = {'type': 'plot', 'value': plt}
+        ```
+2024-01-23 12:15:07 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:15:07 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:15:07 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Plot a chart of the count by country
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='bar')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": plt}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:15:10 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:15:10 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+country_count.plot(kind='bar')
+result = {'type': 'plot', 'value': plt}
+        ```
+2024-01-23 12:15:10 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2024-01-23 12:15:10 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+TypeError: expected str, bytes or os.PathLike object, not module
+. Retrying
+2024-01-23 12:15:10 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Plot a chart of the count by country
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='bar')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": plt}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+TypeError: expected str, bytes or os.PathLike object, not module
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:15:14 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:15:14 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='bar')
+plt.savefig('d:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:15:14 [ERROR] Pipeline failed on step 4: 'Country'
+2024-01-23 12:16:07 [INFO] Question: Plot a pie chart of the count by country
+2024-01-23 12:16:07 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:16:07 [INFO] Prompt ID: 09b3694f-2100-439e-9609-1006dc361a6f
+2024-01-23 12:16:07 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:16:07 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:16:07 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Plot a pie chart of the count by country
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:16:07 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:16:11 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+            ```
+            
+2024-01-23 12:16:11 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:16:11 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:16:11 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:16:11 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:16:11 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:16:11 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:16:12 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Plot a pie chart of the count by country
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:16:15 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:16:15 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:16:15 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:16:15 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 12:16:15 [INFO] Executed in: 7.913830041885376s
+2024-01-23 12:16:15 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:21:14 [INFO] Question: what is the coun of countries? Plot a pie chart of the count by country as well
+2024-01-23 12:21:14 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:21:14 [INFO] Prompt ID: dd507513-0036-469d-b5f5-0d9b140279c0
+2024-01-23 12:21:15 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:21:15 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:21:15 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: what is the coun of countries? Plot a pie chart of the count by country as well
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:21:15 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:21:17 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": pie_chart
+}
+            ```
+            
+2024-01-23 12:21:17 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:21:17 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:21:17 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:21:17 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+result = {'type': 'plot', 'value': pie_chart}
+        ```
+2024-01-23 12:21:18 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:21:18 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:21:18 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: what is the coun of countries? Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": pie_chart
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:21:19 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:21:19 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+result = {'type': 'plot', 'value': pie_chart}
+        ```
+2024-01-23 12:21:20 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2024-01-23 12:21:20 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+TypeError: expected str, bytes or os.PathLike object, not Axes
+. Retrying
+2024-01-23 12:21:20 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: what is the coun of countries? Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": pie_chart
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 134, in execute_func
+    step_data = self._generate_exec_step(tag, result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 183, in _generate_exec_step
+    self._response = self._format_response(result)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 202, in _format_response
+    with open(result["value"], "rb") as image_file:
+TypeError: expected str, bytes or os.PathLike object, not Axes
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:21:22 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:21:22 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+result = {'type': 'plot', 'value': pie_chart.figure}
+result
+        ```
+2024-01-23 12:21:22 [ERROR] Pipeline failed on step 4: 'Country'
+2024-01-23 12:22:48 [INFO] Question: what is the count of countries? Plot a pie chart of the count by country as well
+2024-01-23 12:22:48 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:22:48 [INFO] Prompt ID: fd6609d2-7e16-4cdd-b40f-7be4ebf7b0d1
+2024-01-23 12:22:48 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:22:48 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:22:48 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: what is the count of countries? Plot a pie chart of the count by country as well
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:22:48 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:22:51 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "pie_chart.png"
+}
+            ```
+            
+2024-01-23 12:22:51 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:22:51 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:22:51 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:22:51 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:22:51 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:22:51 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:22:51 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: what is the count of countries? Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "pie_chart.png"
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:22:53 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:22:53 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+pie_chart = country_count.plot.pie(autopct='%1.1f%%')
+plt.axis('equal')
+plt.show()
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:22:53 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:22:53 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 12:22:53 [INFO] Executed in: 5.345186471939087s
+2024-01-23 12:22:54 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:23:11 [INFO] Question: what is the count of countries? 
+2024-01-23 12:23:11 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:23:11 [INFO] Prompt ID: 64410d5a-6446-41e2-88d5-dbf61298768b
+2024-01-23 12:23:11 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:23:11 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:23:12 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: what is the count of countries? 
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:23:12 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:23:14 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+count_countries = len(dfs[0]['Country'].unique())
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": count_countries
+}
+            ```
+            
+2024-01-23 12:23:14 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:23:14 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:23:14 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:14 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Country'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 12:23:14 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:23:14 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:23:14 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: what is the count of countries? 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+count_countries = len(dfs[0]['Country'].unique())
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": count_countries
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:23:15 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:15 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Countr'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 12:23:15 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:23:15 [INFO] Answer: {'type': 'number', 'value': 10}
+2024-01-23 12:23:15 [INFO] Executed in: 3.971212863922119s
+2024-01-23 12:23:15 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:23:34 [INFO] Question: what is the count of countries? 
+2024-01-23 12:23:34 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:23:34 [INFO] Prompt ID: a23115bc-ee4e-4e31-987b-210b0ca4906f
+2024-01-23 12:23:34 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:23:34 [INFO] Using cached response
+2024-01-23 12:23:34 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:23:34 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:23:34 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:23:34 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:23:34 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:34 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Country'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 12:23:34 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:23:34 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:23:34 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: what is the count of countries? 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+count_countries = len(dfs[0]['Country'].unique())
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": count_countries
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:23:36 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:36 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Countr'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 12:23:36 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:23:36 [INFO] Answer: {'type': 'number', 'value': 10}
+2024-01-23 12:23:36 [INFO] Executed in: 2.619039535522461s
+2024-01-23 12:23:36 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:23:36 [INFO] Question: Plot a pie chart of the count by country as well
+2024-01-23 12:23:36 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:23:36 [INFO] Prompt ID: 5c040847-ff7a-4595-8b85-50fcbed5dd76
+2024-01-23 12:23:36 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:23:36 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:23:36 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Plot a pie chart of the count by country as well
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:23:36 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:23:40 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+            ```
+            
+2024-01-23 12:23:40 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:23:40 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:23:40 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:40 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:23:40 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 12:23:40 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 12:23:40 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constituci...,        México D.F.,5021,    Mexico
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312...,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57...,          Berlin,12209,    Germany
+</dataframe>
+
+The user asked the following question:
+Q: Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 12:23:44 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:23:44 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 12:23:44 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:23:44 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 12:23:44 [INFO] Executed in: 7.840459108352661s
+2024-01-23 12:23:44 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:27:52 [INFO] Question: Who gets paid the most?, draw a graph as well
+2024-01-23 12:27:52 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:27:52 [INFO] Prompt ID: bb770b82-a89a-4152-8184-841fca4dfb5c
+2024-01-23 12:27:52 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:27:52 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:27:52 [INFO] Using prompt: <dataframe>
+dfs[0]:5x3
+EmployeeID,Name,Department
+2,Emma,Sales
+3,Liam,IT
+1,John,HR
+</dataframe>
+<dataframe>
+dfs[1]:5x2
+EmployeeID,Salary
+3,4500
+1,5000
+2,6000
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Who gets paid the most?, draw a graph as well
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:27:52 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:27:58 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+# Merge the two dataframes on EmployeeID
+merged_df = pd.merge(dfs[0], dfs[1], on='EmployeeID')
+
+# Find the employee with the highest salary
+highest_salary = merged_df['Salary'].max()
+highest_salary_employee = merged_df.loc[merged_df['Salary'] == highest_salary, 'Name'].values[0]
+
+# Draw a bar chart of salaries
+plt.bar(merged_df['Name'], merged_df['Salary'])
+plt.xlabel('Employee')
+plt.ylabel('Salary')
+plt.title('Salaries of Employees')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('salary_chart.png')
+
+# Declare result var
+result = {
+    "type": "string",
+    "value": f"The employee with the highest salary is {highest_salary_employee}."
+}
+            ```
+            
+2024-01-23 12:27:58 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:27:58 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:27:59 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:27:59 [INFO] 
+Code running:
+```
+merged_df = pd.merge(dfs[0], dfs[1], on='EmployeeID')
+highest_salary = merged_df['Salary'].max()
+highest_salary_employee = merged_df.loc[merged_df['Salary'] == highest_salary, 'Name'].values[0]
+plt.bar(merged_df['Name'], merged_df['Salary'])
+plt.xlabel('Employee')
+plt.ylabel('Salary')
+plt.title('Salaries of Employees')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('d:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png')
+result = {'type': 'string', 'value': f'The employee with the highest salary is {highest_salary_employee}.'}
+        ```
+2024-01-23 12:28:00 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:28:00 [INFO] Answer: {'type': 'string', 'value': 'The employee with the highest salary is Olivia.'}
+2024-01-23 12:28:00 [INFO] Executed in: 7.794931173324585s
+2024-01-23 12:28:00 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:29:01 [INFO] Question: How many photos has been uploaded by John?
+2024-01-23 12:29:01 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:29:01 [INFO] Prompt ID: 766a351f-a325-4a3a-9b7c-df5bc45d3afc
+2024-01-23 12:29:01 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:29:02 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:29:02 [INFO] Using prompt: <dataframe name="users">
+dfs[0]:5x2
+id,name
+2,Emma
+3,Liam
+1,John
+</dataframe>
+<dataframe name="photos">
+dfs[1]:5x2
+id,user_id
+32,1
+31,1
+33,2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: How many photos has been uploaded by John?
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:29:02 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:29:04 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+users = dfs[0]
+photos = dfs[1]
+
+john_id = users[users['name'] == 'John']['id'].values[0]
+john_photos = photos[photos['user_id'] == john_id]
+num_photos = len(john_photos)
+
+# Declare result var
+result = {"type": "number", "value": num_photos}
+            ```
+            
+2024-01-23 12:29:04 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:29:04 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:29:04 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:29:04 [INFO] 
+Code running:
+```
+users = dfs[0]
+photos = dfs[1]
+john_id = users[users['name'] == 'John']['id'].values[0]
+john_photos = photos[photos['user_id'] == john_id]
+num_photos = len(john_photos)
+result = {'type': 'number', 'value': num_photos}
+        ```
+2024-01-23 12:29:04 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:29:04 [INFO] Answer: {'type': 'number', 'value': 2}
+2024-01-23 12:29:04 [INFO] Executed in: 2.73256254196167s
+2024-01-23 12:29:04 [INFO] Executing Step 6: ResultParsing
+2024-01-23 12:29:33 [INFO] Question: How many photos has been uploaded by John? draw a graph as well
+2024-01-23 12:29:34 [INFO] Running PandasAI with openai LLM...
+2024-01-23 12:29:34 [INFO] Prompt ID: edd18a7e-65a4-4f63-b1f1-594336064511
+2024-01-23 12:29:34 [INFO] Executing Step 0: CacheLookup
+2024-01-23 12:29:34 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 12:29:34 [INFO] Using prompt: <dataframe name="users">
+dfs[0]:5x2
+id,name
+3,Liam
+2,Emma
+1,John
+</dataframe>
+<dataframe name="photos">
+dfs[1]:5x2
+id,user_id
+31,1
+32,1
+33,2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: How many photos has been uploaded by John? draw a graph as well
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-23 12:29:34 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 12:29:38 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+users = dfs[0]
+photos = dfs[1]
+
+# Get the user_id of John
+john_id = users[users['name'] == 'John']['id'].values[0]
+
+# Count the number of photos uploaded by John
+num_photos = len(photos[photos['user_id'] == john_id])
+
+# Draw a graph
+photos_per_user = photos.groupby('user_id').size()
+photos_per_user.plot(kind='bar')
+plt.xlabel('User ID')
+plt.ylabel('Number of Photos')
+plt.title('Number of Photos Uploaded by Each User')
+plt.show()
+
+# Declare result var
+result = {
+    "type": "string",
+    "value": f"John has uploaded {num_photos} photos."
+}
+            ```
+            
+2024-01-23 12:29:38 [INFO] Executing Step 3: CachePopulation
+2024-01-23 12:29:38 [INFO] Executing Step 4: CodeExecution
+2024-01-23 12:29:38 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 12:29:38 [INFO] 
+Code running:
+```
+users = dfs[0]
+photos = dfs[1]
+john_id = users[users['name'] == 'John']['id'].values[0]
+num_photos = len(photos[photos['user_id'] == john_id])
+photos_per_user = photos.groupby('user_id').size()
+photos_per_user.plot(kind='bar')
+plt.xlabel('User ID')
+plt.ylabel('Number of Photos')
+plt.title('Number of Photos Uploaded by Each User')
+plt.show()
+result = {'type': 'string', 'value': f'John has uploaded {num_photos} photos.'}
+        ```
+2024-01-23 12:29:38 [INFO] Executing Step 5: ResultValidation
+2024-01-23 12:29:38 [INFO] Answer: {'type': 'string', 'value': 'John has uploaded 2 photos.'}
+2024-01-23 12:29:38 [INFO] Executed in: 4.538217782974243s
+2024-01-23 12:29:38 [INFO] Executing Step 6: ResultParsing
+2024-01-23 13:00:37 [INFO] Question: 
+1. Copy the dataframe to a new variable named df_cleaned.
+2. Do data cleaning.
+3. Return df_cleaned.
+
+2024-01-23 13:02:24 [INFO] Question: 
+1. Copy the dataframe to a new variable named df_cleaned.
+2. Do data cleaning.
+3. Return df_cleaned.
+
+2024-01-23 14:49:42 [INFO] Question: 
+1. Copy the dataframe to a new variable named df_imputed.
+2. Do the imputation of missing values.
+3. Return df_imputed.
+
+2024-01-23 15:19:24 [INFO] Question: 
+1. Copy the dataframe to a new variable named df_cleaned.
+2. Do data cleaning.
+3. Return df_cleaned.
+
+2024-01-23 15:22:48 [INFO] Question: Return 5 countries
+2024-01-23 15:22:48 [INFO] Running PandasAI with openai LLM...
+2024-01-23 15:22:48 [INFO] Prompt ID: c7af4647-c86b-402d-9c71-7f838955cb7c
+2024-01-23 15:22:48 [INFO] Executing Step 0: CacheLookup
+2024-01-23 15:22:48 [INFO] Using cached response
+2024-01-23 15:22:48 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 15:22:48 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 15:22:48 [INFO] Executing Step 3: CachePopulation
+2024-01-23 15:22:48 [INFO] Executing Step 4: CodeExecution
+2024-01-23 15:22:48 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:22:48 [INFO] 
+Code running:
+```
+countries = dfs[0]['Country'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+        ```
+2024-01-23 15:22:48 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 15:22:48 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 15:22:48 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: Return 5 countries
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+countries = dfs[0]['Country'].unique()[:5]
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "dataframe", "value": pd.DataFrame(countries, columns=["Country"]) }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 15:22:52 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:22:52 [INFO] 
+Code running:
+```
+countries = dfs[0]['Countr'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+        ```
+2024-01-23 15:22:52 [INFO] Executing Step 5: ResultValidation
+2024-01-23 15:22:52 [INFO] Answer: {'type': 'dataframe', 'value':        Country
+0      Germany
+1       Mexico
+2           UK
+3       Sweden
+4       France}
+2024-01-23 15:22:52 [INFO] Executed in: 4.226622104644775s
+2024-01-23 15:22:52 [INFO] Executing Step 6: ResultParsing
+2024-01-23 15:22:56 [INFO] Question: what is the count of countries? 
+2024-01-23 15:22:56 [INFO] Running PandasAI with openai LLM...
+2024-01-23 15:22:56 [INFO] Prompt ID: fb8bd667-d6ac-4ea0-8f9b-02a38ca39e7b
+2024-01-23 15:22:56 [INFO] Executing Step 0: CacheLookup
+2024-01-23 15:22:56 [INFO] Using cached response
+2024-01-23 15:22:56 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 15:22:56 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 15:22:56 [INFO] Executing Step 3: CachePopulation
+2024-01-23 15:22:56 [INFO] Executing Step 4: CodeExecution
+2024-01-23 15:22:56 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:22:56 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Country'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 15:22:56 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 15:22:56 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 15:22:56 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: what is the count of countries? 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+count_countries = len(dfs[0]['Country'].unique())
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": count_countries
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 15:22:58 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:22:58 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Countr'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 15:22:58 [INFO] Executing Step 5: ResultValidation
+2024-01-23 15:22:58 [INFO] Answer: {'type': 'number', 'value': 10}
+2024-01-23 15:22:58 [INFO] Executed in: 2.0976266860961914s
+2024-01-23 15:22:58 [INFO] Executing Step 6: ResultParsing
+2024-01-23 15:22:58 [INFO] Question: Plot a pie chart of the count by country as well
+2024-01-23 15:22:58 [INFO] Running PandasAI with openai LLM...
+2024-01-23 15:22:58 [INFO] Prompt ID: bc69adb2-4306-4a29-869a-b9b290e9e709
+2024-01-23 15:22:58 [INFO] Executing Step 0: CacheLookup
+2024-01-23 15:22:58 [INFO] Using cached response
+2024-01-23 15:22:58 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 15:22:58 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 15:22:58 [INFO] Executing Step 3: CachePopulation
+2024-01-23 15:22:58 [INFO] Executing Step 4: CodeExecution
+2024-01-23 15:22:58 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:22:58 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 15:22:59 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 15:22:59 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 15:22:59 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 15:23:02 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:23:02 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 15:23:03 [INFO] Executing Step 5: ResultValidation
+2024-01-23 15:23:03 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 15:23:03 [INFO] Executed in: 4.950746774673462s
+2024-01-23 15:23:03 [INFO] Executing Step 6: ResultParsing
+2024-01-23 15:23:52 [INFO] Question: what is the count of countries? 
+2024-01-23 15:23:52 [INFO] Running PandasAI with openai LLM...
+2024-01-23 15:23:52 [INFO] Prompt ID: e14f3e50-61d3-47dc-80a2-82c651cedb65
+2024-01-23 15:23:52 [INFO] Executing Step 0: CacheLookup
+2024-01-23 15:23:52 [INFO] Using cached response
+2024-01-23 15:23:52 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 15:23:52 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 15:23:53 [INFO] Executing Step 3: CachePopulation
+2024-01-23 15:23:53 [INFO] Executing Step 4: CodeExecution
+2024-01-23 15:23:53 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:23:53 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Country'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 15:23:53 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 15:23:53 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 15:23:53 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: what is the count of countries? 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+count_countries = len(dfs[0]['Country'].unique())
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": count_countries
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 15:23:54 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 15:23:54 [INFO] 
+Code running:
+```
+count_countries = len(dfs[0]['Countr'].unique())
+result = {'type': 'number', 'value': count_countries}
+        ```
+2024-01-23 15:23:54 [INFO] Executing Step 5: ResultValidation
+2024-01-23 15:23:54 [INFO] Answer: {'type': 'number', 'value': 10}
+2024-01-23 15:23:54 [INFO] Executed in: 2.1669654846191406s
+2024-01-23 15:23:54 [INFO] Executing Step 6: ResultParsing
+2024-01-23 17:04:30 [INFO] Question: Return 5 countries
+2024-01-23 17:04:30 [INFO] Running PandasAI with openai LLM...
+2024-01-23 17:04:30 [INFO] Prompt ID: 7029d8ce-428a-4df8-a8ce-a1508fc0a676
+2024-01-23 17:04:30 [INFO] Executing Step 0: CacheLookup
+2024-01-23 17:04:30 [INFO] Using cached response
+2024-01-23 17:04:30 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 17:04:30 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 17:04:30 [INFO] Executing Step 3: CachePopulation
+2024-01-23 17:04:30 [INFO] Executing Step 4: CodeExecution
+2024-01-23 17:04:30 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 17:04:30 [INFO] 
+Code running:
+```
+countries = dfs[0]['Country'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+        ```
+2024-01-23 17:04:30 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 17:04:30 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 17:04:30 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: Return 5 countries
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+countries = dfs[0]['Country'].unique()[:5]
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "dataframe", "value": pd.DataFrame(countries, columns=["Country"]) }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 1, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 17:04:35 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 17:04:35 [INFO] 
+Code running:
+```
+countries = dfs[0]['Countr'].unique()[:5]
+result = {'type': 'dataframe', 'value': pd.DataFrame(countries, columns=['Country'])}
+        ```
+2024-01-23 17:04:35 [INFO] Executing Step 5: ResultValidation
+2024-01-23 17:04:35 [INFO] Answer: {'type': 'dataframe', 'value':        Country
+0      Germany
+1       Mexico
+2           UK
+3       Sweden
+4       France}
+2024-01-23 17:04:35 [INFO] Executed in: 4.82920503616333s
+2024-01-23 17:04:35 [INFO] Executing Step 6: ResultParsing
+2024-01-23 17:04:57 [INFO] Question: Plot a pie chart of the count by country as well
+2024-01-23 17:04:57 [INFO] Running PandasAI with openai LLM...
+2024-01-23 17:04:57 [INFO] Prompt ID: db5076d8-34cf-4f3c-ad51-c2cd18360a52
+2024-01-23 17:04:57 [INFO] Executing Step 0: CacheLookup
+2024-01-23 17:04:57 [INFO] Using cached response
+2024-01-23 17:04:57 [INFO] Executing Step 1: PromptGeneration
+2024-01-23 17:04:57 [INFO] Executing Step 2: CodeGenerator
+2024-01-23 17:04:57 [INFO] Executing Step 3: CachePopulation
+2024-01-23 17:04:57 [INFO] Executing Step 4: CodeExecution
+2024-01-23 17:04:57 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 17:04:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 17:04:57 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-23 17:04:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+. Retrying
+2024-01-23 17:04:57 [INFO] Using prompt: <dataframe>
+dfs[0]:15x7
+CustomerID,CustomerName,     ContactName,    Address,             City,  PostalCode,Countr
+3,        Antonio Moreno...,    Antonio Moreno,Mataderos 2312,       México D.F.,5023,    Mexico
+1,        Alfreds Futter...,       Maria Anders,Obere Str. 57,          Berlin,12209,    Germany
+2,        Ana Trujillo E...,    Ana Trujillo,Avda. de la Constitución 2222,        México D.F.,5021,    Mexico
+</dataframe>
+
+The user asked the following question:
+Q: Plot a pie chart of the count by country as well
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+country_count = df['Country'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {"type": "plot", "value": "pie_chart.png"}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Country'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\pipelines\smart_datalake_chat\code_execution.py", line 53, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandasai\helpers\code_manager.py", line 212, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 2, in <module>
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "c:\Users\Junaid Rafiq\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Country'
+
+
+Fix the python code above and return the new python code:
+2024-01-23 17:05:01 [INFO] Saving charts to d:\DemandScienceInsights\DemandScienceInsights\exports\charts\temp_chart.png
+2024-01-23 17:05:01 [INFO] 
+Code running:
+```
+df = dfs[0]
+country_count = df['Countr'].value_counts()
+country_count.plot(kind='pie', autopct='%1.1f%%')
+plt.axis('equal')
+plt.title('Count by Country')
+result = {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+        ```
+2024-01-23 17:05:01 [INFO] Executing Step 5: ResultValidation
+2024-01-23 17:05:01 [INFO] Answer: {'type': 'plot', 'value': 'd:/DemandScienceInsights/DemandScienceInsights/exports/charts/temp_chart.png'}
+2024-01-23 17:05:01 [INFO] Executed in: 4.016345024108887s
+2024-01-23 17:05:01 [INFO] Executing Step 6: ResultParsing

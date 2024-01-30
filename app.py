@@ -6,12 +6,16 @@ import streamlit as st
 # from dotenv import load_dotenv
 import openai
 import time
+import traceback
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 # load_dotenv()
 
 openai.api_key = st.secrets["openai_api_key"]
 
 def initialize_session_state():
-    session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database', "settings"]
+    session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database', "settings",'cleaning_strategy']
 
     for var in session_state_vars:
         if var not in st.session_state:
@@ -32,9 +36,9 @@ def upload_excel_file():
 
             if submit_button:   
                 success_message = st.sidebar.success("DB name submitted successfully")
-                time.sleep(2)
+                time.sleep(2)   
                 success_message.empty()
-                xls_connection, schema = xlsxx.excel_to_mysql(uploaded_file, db_name)
+                xls_connection, schema = xlsxx.excel_to_mysql(uploaded_file, db_name,st.session_state['cleaning_strategy'])
                 st.session_state['schema'] = schema
                 # st.write(type(schema))
                 # st.warning(xls_connection)
@@ -80,6 +84,27 @@ def main():
             index=None,
             placeholder="Select DB..."
         )    
+        
+
+
+        # Display the cleaning strategy selection
+        st.session_state['cleaning_strategy'] = st.sidebar.selectbox(
+            "Data cleaning Strategy?",
+            ("auto", "manual"),
+            index=None,
+            placeholder="Select Cleaning Strategy"
+        )
+        
+        if st.session_state['cleaning_strategy'] == 'manual':
+                # Check if the session variable 'warning_displayed' is not set
+            if 'warning_displayed_cleaning' not in st.session_state:
+                # Set the session variable to True to indicate that the warning has been displayed
+                st.session_state.warning_displayed_cleaning = True
+                
+                # if st.session_state['cleaning_strategy'] == 'manual':
+                success_message = st.sidebar.warning("Make sure that the Data in the Excel sheet is clean.")
+                time.sleep(4)   
+                success_message.empty() 
 
         st.session_state['settings']= st.sidebar.checkbox("Settings")
         if st.session_state['settings']:
@@ -89,7 +114,7 @@ def main():
 
         if DB_option is None:
             # st.sidebar.success(DB_option)
-            session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database']
+            session_state_vars = ['db_connection', 'connect_db', 'schema', 'xls_connection', 'host', 'user', 'database','warning_displayed_cleaning','cleaning_strategy']
             
 
             for var in session_state_vars:
@@ -174,8 +199,9 @@ def main():
                             visualization(data, query_nature,chart_type)
 
     except Exception as e:
+        stack_trace = traceback.format_exc()
         st.error(f"An error occurred: {str(e)}")
-        print(f'ERROR OCCURED: {str(e)}')   
+        print(f"ERROR OCCURRED: {e}\n{stack_trace}")
 
 if __name__ == "__main__":
     main()
