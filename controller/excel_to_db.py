@@ -42,11 +42,13 @@ def create_connection(database, user, password, host='localhost'):
                     host=host,
                     user=user,
                     password=password,
-                    database=database
+                    database=database   
                 )
 
                 if connection.is_connected():
                     print(f"Connected to the database: {database}")
+                    
+                    
                    
                     return connection
 

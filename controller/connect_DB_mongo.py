@@ -20,7 +20,7 @@ def make_prompt(customer_query,schema):
         while formulating the sql query consider the principles of relational database concepts\
         append a semicolon (;)at the end of sql query.\
         if the customer_query doesn't sound like a query, say "Please enter the relevent query !".
-        
+        make sure the column names are choosen from the provided schema only.
         
         ```{customer_query}```        
         ```{schema}```
@@ -36,11 +36,11 @@ def get_completion(messages, model="gpt-3.5-turbo"):
     return response.choices[0].message["content"]
 
 def get_answer(user_query,schema):
-    # print('schema:',schema)
+    print('schema:',schema)
     prompt = make_prompt(user_query,schema)
     messages = [
         {"role": "system", "content": prompt}
-    ] 
+    ]
 
     response = get_completion(messages)
     
