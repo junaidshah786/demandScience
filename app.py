@@ -236,7 +236,7 @@ def main():
                             
                             
 
-                    if sql_query != "Please enter the relevant query!":
+                    if sql_query != "Please enter the relevant query!" or sql_query != "Please enter the relevant query !":
                         with st.sidebar.expander("Generated SQL Query", expanded=False):
                             st.success(sql_query) 
                         # st.write('db connection 112: ', st.session_state['db_connection'])
